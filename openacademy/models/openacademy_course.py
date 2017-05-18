@@ -16,3 +16,4 @@ class openacademy(models.Model):
 
     description = fields.Text(string='Detalles', required=False)
     '#nombre del campo'
+    responsible_id = fields.Many2one('res.users', ondelete='set null', string='Responsible', index=True)
