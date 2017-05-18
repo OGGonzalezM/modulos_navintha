@@ -17,7 +17,9 @@
                             <field name="duration"/>
                             <field name="seats"/>
                         </group>
-					</sheet>					
+					</sheet>
+					<label for="attendee_ids"/>
+                    <field name="attendee_ids"/>				
 				</form>
 			</field>
 		</record>
