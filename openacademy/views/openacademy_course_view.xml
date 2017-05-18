@@ -6,7 +6,7 @@
 			<field name="name">course.form.view</field>
 			<field name="model">openacademy.course</field>
 			<field name="arch" type="xml">
-				<form string="Course course_form_view">
+				<form string="Course Form">
 					<sheet>
 						<group>
 							<!-- Mostrar los datos de los modelos -->
@@ -15,11 +15,19 @@
 							<field name="responsible_id"/>
 						</group>
 						<notebook>
-							<page string="Descripcion">
+							<page string="Description">
 								<field name="description"/>
 							</page>
-							<page string="Acerca de ">
+							<page string="About ">
 								This an example of notebooks
+							</page>
+							<page string="Sessions">
+								<field name="session_ids">
+									<tree string="Registered sessions" editable="bottom">
+										<field name="name"/>
+										<field name="instructor_id"/>
+									</tree>
+								</field>
 							</page>
 						</notebook>
 					</sheet>
