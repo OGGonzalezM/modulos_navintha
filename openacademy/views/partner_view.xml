@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- Add instructor view to existing view -->
+		<record model="ir.ui.view" id="partner_instructor_form_view">
+			<field name="name">partner.instructor</field>
+			<!-- Modelo origen -->
+			<field name="model">res.partner</field>
+			<!-- Extraido del id de res.partner_for, vista heredada  -->
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<!-- inside, se usa para los notebook -->
+				<notebook position="inside">
+					<page string="Sessions">
+						<group>
+							<field name="instructor"/>
+							<field name="session_ids"/>
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+		<!-- En las vistas solo se puede poner un notebook -->
+	</data>
+</odoo>

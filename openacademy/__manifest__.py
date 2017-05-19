@@ -24,7 +24,8 @@
     # always loaded
     'data': [
         'views/openacademy_course_view.xml',
-	'views/openacademy_session_view.xml',
+        'views/openacademy_session_view.xml',
+        'views/partner_view.xml',
     ],
     'installable':True,
     'auto_install':False,
