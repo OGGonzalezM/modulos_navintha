@@ -9,4 +9,4 @@ class Partner(models.Model):
     # Herencia Odoo
 
     instructor = fields.Boolean(default=False)
-    session_ids = fields.Many2many('openacademy.session', string="Session as instructor", readonly=True)
+    session_ids = fields.Many2many('openacademy.session', string="Session as attendee", readonly=True)
