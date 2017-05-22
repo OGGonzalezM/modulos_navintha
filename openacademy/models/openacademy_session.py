@@ -1,4 +1,5 @@
-from odoo import fields, models
+#Fijarse bien en las importaciones.
+from odoo import api, fields, models
 
 
 class Session(models.Model):
@@ -16,3 +17,14 @@ class Session(models.Model):
     course_id = fields.Many2one('openacademy.course', ondelete='cascade',
         string='Course', required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
+
+    taken_seats = fields.Float(string="Taken Seats", compute='_taken_seats')
+
+    @api.one
+    @api.depends('seats', 'attendee_ids')
+    def _taken_seats(self):
+        #if not hace referencia a nada, es decir, null, cero, etc.
+        if not self.seats:
+            self.seats = 0.0
+        else:
+            self.taken_seats = 100.0 * len(self.attendee_ids) / self.seats
