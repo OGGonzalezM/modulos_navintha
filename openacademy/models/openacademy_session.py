@@ -6,7 +6,8 @@ class Session(models.Model):
     _name = 'openacademy.session'
 
     name = fields.Char(required=True)
-    start_date = fields.Date()
+    start_date = fields.Date(default=fields.Date.today())
+    datetime_eg = fields.Datetime(default=fields.Datetime.now)
     duration = fields.Float(digits=(6, 2), help='Duration in days')
     seats = fields.Integer(string='Numero de asientos')
 
@@ -19,6 +20,7 @@ class Session(models.Model):
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
 
     taken_seats = fields.Float(string="Taken Seats", compute='_taken_seats')
+    active = fields.Boolean(default=True)
 
     @api.one
     @api.depends('seats', 'attendee_ids')
