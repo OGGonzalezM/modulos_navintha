@@ -1,5 +1,5 @@
 #Fijarse bien en las importaciones.
-from odoo import api, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class Session(models.Model):
@@ -30,3 +30,27 @@ class Session(models.Model):
             self.seats = 0.0
         else:
             self.taken_seats = 100.0 * len(self.attendee_ids) / self.seats
+
+    @api.onchange('seats', 'attendee_ids')
+    def _verify_valid_seats(self):
+        print "Verifying valid seats"
+        if self.seats < 0:
+            return {
+                'warning':{
+                    'title': "Incorrect 'seats' value",
+                    'message': "The number of avaliable seats may not be negative",
+                },
+            }
+        if self.seats < len(self.attendee_ids):
+            return{
+                'warning':{
+                    'title': "Too many attendees",
+                    'message': "Increase seats or remove excess attendees",
+                },
+            }
+
+    @api.one
+    @api.constrains('instructor_id', 'attendee_ids')
+    def _check_instructor_not_in_attendees(self):
+        if self.instructor_id and self.instructor_id in self.attendee_ids:
+            raise exceptions.ValidationError("A session's instructor can't be an attendee")
