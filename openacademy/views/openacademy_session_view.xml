@@ -18,6 +18,7 @@
                             <field name="start_date"/>
                             <field name="datetime_eg"/>
                             <field name="duration"/>
+                            <field name="end_date"/>
                             <field name="seats"/>
                         </group>
 					</sheet>
@@ -38,15 +39,27 @@
 					<field name="duration" invisible="1"/>
 				</tree>
 			</field>
-		</record>		
+		</record>
+
+		<!-- Vista calendar -->		
+		<record model="ir.ui.view" id="session_calendar_view">
+			<field name="name">session.calendar</field>
+			<field name="model">openacademy.session</field>
+			<field name="arch" type="xml">
+				<calendar string="Session calendar" date_start="start_date" date_stop="end_date" color="instructor_id">
+					<field name="name"/>
+				</calendar>
+			</field>
+		</record>
 
 		<record model="ir.actions.act_window" id="session_list_action">
 			<field name="name">Sessions</field>
 			<field name="res_model">openacademy.session</field>
 			<field name="view_type">form</field>
-			<field name="view_mode">tree,form</field>
+			<!-- Fijarse en agregar el tipo de vista, si no se pone no se inicializa -->
+			<field name="view_mode">tree,form,calendar</field>
 		</record>
-
+		<!-- Item en el menu -->
 		<menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="session_list_action">
 		</menuitem>
 	</data>
