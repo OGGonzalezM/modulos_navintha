@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+#Por convencion se ponen en orden alfabetico
+from odoo import api, models, fields
 
 
-class openacademy(models.Model):
+class Course(models.Model):
     '# Openacademy == course'
     _name = 'openacademy.course'
 
@@ -12,7 +13,7 @@ class openacademy(models.Model):
     name = fields.Char(string='Nombre', required=True)
     '#llave de la tabla, es como PK'
 
-    '#string --> etiqueta de la variable name'
+    '#string --> etiqueta de las variables'
 
     description = fields.Text(string='Detalles', required=False)
     '#nombre del campo'
@@ -28,4 +29,18 @@ class openacademy(models.Model):
         ('name_unique',
          'UNIQUE(name)',
          "The course title must be unique"),
-    ]
+    ] 
+
+    @api.multi
+    #api one send default params cr, uid, id, context
+    def copy(self, default=None):
+        #default['name'] = self.name + ' (copy)'
+        copied_count = self.search_count([('name', '=like', u"Copy of {}%".format(self.name))])
+        if not copied_count:
+            new_name = u"Copy of {}%".format(self.name)
+        else:
+            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+        default['name'] = new_name
+        return super(Course, self).copy(default)
+
+#AttributeError: 'list' object has no attribute 'id'
