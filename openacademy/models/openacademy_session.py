@@ -21,10 +21,12 @@ class Session(models.Model):
         string='Course', required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
 
+    # Las comillas dobles suelen usarse para los strings, aunque no es restrictivo
     taken_seats = fields.Float(string="Taken Seats", compute='_taken_seats')
     active = fields.Boolean(default=True)
     end_date = fields.Date(string="End Date", store=True, compute='_get_end_date', inverse='_set_end_date')
     hours = fields.Float(string="Duration in hours", compute='_get_hours', inverse='_set_hours')
+    attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
 
     @api.one
     @api.depends('seats', 'attendee_ids')
@@ -90,4 +92,10 @@ class Session(models.Model):
     @api.one
     def _set_hours(self):
         self.duration = self.hours / 24
+
+    #Obtener cuenta de los asistentes
+    @api.one
+    @api.depends('attendee_ids')
+    def _get_attendees_count(self):
+        self.attendees_count = len(self.attendee_ids)
  
