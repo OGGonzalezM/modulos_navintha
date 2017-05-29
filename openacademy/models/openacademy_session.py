@@ -24,6 +24,7 @@ class Session(models.Model):
     taken_seats = fields.Float(string="Taken Seats", compute='_taken_seats')
     active = fields.Boolean(default=True)
     end_date = fields.Date(string="End Date", store=True, compute='_get_end_date', inverse='_set_end_date')
+    hours = fields.Float(string="Duration in hours", compute='_get_hours', inverse='_set_hours')
 
     @api.one
     @api.depends('seats', 'attendee_ids')
@@ -51,13 +52,15 @@ class Session(models.Model):
                     'message': "Increase seats or remove excess attendees",
                 },
             }
-
+    
+    #Verificar que el numero de asientos se menor o igual al numero de asistentes
     @api.one
     @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor_not_in_attendees(self):
         if self.instructor_id and self.instructor_id in self.attendee_ids:
             raise exceptions.ValidationError("A session's instructor can't be an attendee")
 
+    #Funciones para el calculo de la fecha de inicio y la fecha de finalizacion
     @api.one
     @api.depends('duration', 'start_date')
     def _get_end_date(self):
@@ -77,3 +80,14 @@ class Session(models.Model):
         start_date = fields.Datetime.from_string(self.start_date)
         end_date = fields.Datetime.from_string(self.end_date)
         self.duration = (end_date - start_date).days + 1
+
+    #Definicion de las funciones para el campo 'hours'
+    @api.one
+    @api.depends('duration')
+    def _get_hours(self):
+        self.hours = self.duration * 24
+
+    @api.one
+    def _set_hours(self):
+        self.duration = self.hours / 24
+ 
