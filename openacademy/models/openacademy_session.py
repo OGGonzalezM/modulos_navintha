@@ -28,6 +28,14 @@ class Session(models.Model):
     hours = fields.Float(string="Duration in hours", compute='_get_hours', inverse='_set_hours')
     attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
     color = fields.Integer()
+    
+    #Workflow
+    state = fields.Selection([
+         ('draft', 'Draft'),
+         ('confirmed', 'Confirmed'),
+         ('done', 'Done'),
+         ], default='draft', readonly=True)
+    
     @api.one
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):

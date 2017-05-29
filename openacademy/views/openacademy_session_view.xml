@@ -6,6 +6,11 @@
 			<field name="model">openacademy.session</field>
 			<field name="arch" type="xml">
 				<form string="Session Form">
+                    <!-- Cabecera para poner botones u otras cosas -->
+                    <header>
+                       <field name="state" widget="statusbar"/> 
+                    </header>
+
 					<sheet>
 						<group string="General">
                             <field name="course_id"/>
