@@ -52,7 +52,8 @@
 				</calendar>
 			</field>
 		</record>
-
+		
+		<!-- Vista Gantt -->
 		<record model="ir.ui.view" id="session_gantt_view">
 			<field name="name">session.gantt</field>
 			<field name="model">openacademy.session</field>
@@ -65,12 +66,14 @@
 			</field>
 		</record>
 
+		<!-- Inicializacion de las vistas deacuerdo a lo definido anteriormente-->
 		<record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Sessions</field>
             <field name="res_model">openacademy.session</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar,gantt</field>
         </record>
+
 		<!-- Item en el menu -->
 		<menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="session_list_action">
 		</menuitem>
