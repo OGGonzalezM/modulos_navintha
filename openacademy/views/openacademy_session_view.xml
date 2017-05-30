@@ -8,6 +8,16 @@
 				<form string="Session Form">
                     <!-- Cabecera para poner botones u otras cosas -->
                     <header>
+                        <!-- Buttons to change the state of a record(session) -->
+                        <button name="action_draft" 
+                             type="object" string="Reset to draft" 
+                             states="confirmed,done"></button>
+                        <button name="action_confirm" 
+                             type="object" string="Confirm" 
+                             states="draft" class="oe_highlight"></button>
+                        <button name="action_done" 
+                             type="object" string="Mark as done" 
+                             states="confirmed" class="oe_highlight"></button>
                        <field name="state" widget="statusbar"/> 
                     </header>
 
