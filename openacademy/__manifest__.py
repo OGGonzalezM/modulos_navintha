@@ -9,11 +9,10 @@
         El proposito de este modulo es crear un modulo funcional
     """,
 
-    'author': "OGGOnzanzalezM",
+    'author': "OGGonzalezM",
     'website': "http://www.soluciones4g.com",
 
     # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Uncategorized',
     'version': '0.1',
@@ -27,6 +26,8 @@
         'views/openacademy_session_view.xml',
         'views/partner_view.xml',
         'workflow/openacademy_session_workflow.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
     'installable':True,
     'auto_install':False,
