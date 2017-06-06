@@ -28,6 +28,7 @@
         'workflow/openacademy_session_workflow.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'views/openacademy_wizard_view.xml',
     ],
     'installable':True,
     'auto_install':False,
