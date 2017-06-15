@@ -1,1 +1,2 @@
-from . import generador_cod
+from . import generador
+from . import letra

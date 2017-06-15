@@ -18,11 +18,12 @@
     'version': '1.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'product'],
 
     # always loaded
     'data': [
         'views/generador_view.xml',
+        'views/letra_view.xml',
     ],
     'installable':True,
     'auto_install':False,
