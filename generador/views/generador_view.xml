@@ -9,8 +9,10 @@
 	    <field name="inherit_id" ref="product.product_template_only_form_view"></field>
 	    <field name="arch" type="xml">
 	        <xpath expr="//field[@name='categ_id']" position="after">
-		    	<button name="gen_codigos" type="object" string="Generar codigo" class=""></button>
 			</xpath>
+	    </field>
+	    <field name="arch" type="html">
+	    	<button class="btn btn-primary btn-lg">Botón</button>
 	    </field>
 	</record>
     </data>

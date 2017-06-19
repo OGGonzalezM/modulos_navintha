@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields
 
-class Generador(models.Model):
+class Generador1(models.Model):
     # Revisar la forma de herencia
     
     _inherit = 'product.template'
