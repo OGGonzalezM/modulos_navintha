@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #Por convencion se ponen en orden alfabetico
-from odoo import api, models, fields
+from odoo import api, models, fields, _
 
 
 class Course(models.Model):
@@ -24,22 +24,22 @@ class Course(models.Model):
     _sql_constraints = [
         ('name_description_check',
          'CHECK(name != description)',
-         "The title of the course should not be the description"),
+         _("The title of the course should not be the description")),
 
         ('name_unique',
          'UNIQUE(name)',
-         "The course title must be unique"),
+         _("The course title must be unique")),
     ] 
 
     @api.multi
     #api one send default params cr, uid, id, context
     def copy(self, default=None):
         #default['name'] = self.name + ' (copy)'
-        copied_count = self.search_count([('name', '=like', u"Copy of {}%".format(self.name))])
+        copied_count = self.search_count([('name', '=like', _(u"Copy of {}%").format(self.name))])
         if not copied_count:
-            new_name = u"Copy of {}%".format(self.name)
+            new_name = _(u"Copy of {}%").format(self.name)
         else:
-            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+            new_name = _(u"Copy of {} ({})").format(self.name, copied_count)
         default['name'] = new_name
         return super(Course, self).copy(default)
 
