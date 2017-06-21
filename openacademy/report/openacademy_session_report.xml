@@ -2,5 +2,6 @@
 <odoo>
 	<data>
 			<record id="" name=""/>
+			<menuitem model=""/>
 	</data>
 </odoo>
