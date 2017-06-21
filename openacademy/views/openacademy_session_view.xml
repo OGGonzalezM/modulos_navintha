@@ -5,20 +5,20 @@
 			<field name="name">session.form</field>
 			<field name="model">openacademy.session</field>
 			<field name="arch" type="xml">
-				<form string="Session Form">
+				<form string="Session Form"> 
                     <!-- Cabecera para poner botones u otras cosas -->
                     <header>
                         <!-- Buttons to change the state of a record(session) -->
-                        <button name="button_draft" 
-                             type="workflow" string="Reset to draft" 
+                        <button name="button_draft"
+                             type="workflow" string="Reset to draft"
                              states="confirmed,done"></button>
-                        <button name="button_confirm" 
-                             type="workflow" string="Confirm" 
+                        <button name="button_confirm"
+                             type="workflow" string="Confirm"
                              states="draft" class="oe_highlight"></button>
-                        <button name="button_done" 
-                             type="workflow" string="Mark as done" 
+                        <button name="button_done"
+                             type="workflow" string="Mark as done"
                              states="confirmed" class="oe_highlight"></button>
-                       <field name="state" widget="statusbar" statusbar_colors='{"confirmed":"red","done":"blue"}'/> 
+                       <field name="state" widget="statusbar" statusbar_colors='{"confirmed":"red","done":"blue"}'/>
                     </header>
 
 					<sheet>
@@ -43,7 +43,7 @@
 				</form>
 			</field>
 		</record>
-		
+
 		<!-- Session tree view -->
 		<record model="ir.ui.view" id="session_tree_view">
 			<field name="name">session.tree</field>
@@ -57,7 +57,7 @@
 			</field>
 		</record>
 
-		<!-- Vista calendar -->		
+		<!-- Vista calendar -->
 		<record model="ir.ui.view" id="session_calendar_view">
 			<field name="name">session.calendar</field>
 			<field name="model">openacademy.session</field>
@@ -67,7 +67,7 @@
 				</calendar>
 			</field>
 		</record>
-		
+
 		<!-- Vista Gantt -->
 		<record model="ir.ui.view" id="session_gantt_view">
 			<field name="name">session.gantt</field>

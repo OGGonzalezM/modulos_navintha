@@ -29,6 +29,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/openacademy_wizard_view.xml',
+        'report/openacademy_session_report.xml',
     ],
     'installable':True,
     'auto_install':False,
