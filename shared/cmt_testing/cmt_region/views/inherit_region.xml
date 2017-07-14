@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="region_field_view" model="ir.ui.view">
+			<field name="name">res.partner_region_field_view.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='website']" position="after">
+					<field name="x_region" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
