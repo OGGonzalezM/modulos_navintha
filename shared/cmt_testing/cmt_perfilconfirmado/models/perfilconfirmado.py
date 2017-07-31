@@ -10,11 +10,13 @@ class Perfilconfirmado(models.Model):
 		 'x_cmt_cuentaconpersonalproftec',
 		 'x_cmt_subcontrata', 
 		 'x_cmt_solovendeotmbninstala', 
-		 'x_cmt_quetipodebienes', 
+		 'x_cmt_productosquproduceoalm', 
 		 'x_cmt_distribuyepanel',
 		 'x_contr_distripanel', 
 		 'x_contr_cuentacnpersonal', 
-		 'x_cmt_instalacionesfabriles')
+		 'x_cmt_instalacionesfabriles',
+		 'x_cmt_certifi',
+		 'x_cmt_cuenta_con_bodegas_o_sucursales')
 	def _fijar_perfil_cliente(self):
 		for record in self:
 		# Proyectista
@@ -25,15 +27,12 @@ class Perfilconfirmado(models.Model):
 		            record['x_perfilconfirmado'] = "Contratista"
 		        else:
 		            record['x_perfilconfirmado'] = "Ninguno"
-		# Profesional Tecnico            
+		# Profesional Técnico            
 		    elif (self.x_cmt_cualessuactividadprincipal == 20):
-		        if (self.x_cmt_cuentaconpersonalproftec == 10):
-		            if (self.x_cmt_distribuyepanel == True):
-		                record['x_perfilconfirmado'] = "Profesional Tecnico"
-		            elif (self.x_cmt_cuentaconpersonalproftec == 20 and self.x_cmt_distribuyepanel == True):
+		        if (self.x_cmt_cuentaconpersonalproftec == 30 and self.x_cmt_distribuyepanel == False or self.x_cmt_cuentaconpersonalproftec == 20 and self.x_cmt_distribuyepanel == False or self.x_cmt_cuentaconpersonalproftec == 10 and self.x_cmt_distribuyepanel == False):
+		                record['x_perfilconfirmado'] = "Profesional Técnico"
+		        elif (self.x_cmt_cuentaconpersonalprof tec == 30 and self.x_cmt_distribuyepanel == True):
 		                record['x_perfilconfirmado'] = "Contratista"
-		        elif (self.x_cmt_cuentaconpersonalproftec == 20 and self.x_cmt_distribuyepanel == True):
-		            record['x_perfilconfirmado'] = "Contratista"
 		        else:
 		            record['x_perfilconfirmado'] = "Ninguno"
 		# Contratista
@@ -42,23 +41,28 @@ class Perfilconfirmado(models.Model):
 		            if (self.x_contr_distripanel == True):
 		                record['x_perfilconfirmado'] = "Contratista"
 		            else:
-		                record['x_perfilconfirmado'] = "Profesional Tecnico"    
+		                record['x_perfilconfirmado'] = "Profesional Técnico"    
 		        else:
-		            record['x_perfilconfirmado'] = "Profesional Tecnico"
+		            record['x_perfilconfirmado'] = "Profesional Técnico"
 		# Distribuidor
 		    elif (self.x_cmt_cualessuactividadprincipal == 60):
-		        if (self.x_cmt_solovendeotmbninstala == 60):
+		        if (self.x_cmt_solovendeotmbninstala == 60 and self.x_cmt_cuenta_con_bodegas_o_sucursales==True or self.x_cmt_solovendeotmbninstala == 10 and self.x_cmt_cuenta_con_bodegas_o_sucursales==True):
 		            record['x_perfilconfirmado'] = "Distribuidor"
-		        elif (self.x_cmt_solovendeotmbninstala == 10):
+		        elif (self.x_cmt_solovendeotmbninstala == 10 or self.x_cmt_solovendeotmbninstala == 60):
 		            record['x_perfilconfirmado'] = "Contratista"
 		        else:
 		            record['x_perfilconfirmado'] = "Ninguno"
 		# Fabricante
 		    elif (self.x_cmt_cualessuactividadprincipal == 70):
-		        if (self.x_cmt_quetipodebienes == 70):
 		            if (self.x_cmt_instalacionesfabriles == True):
 		                record['x_perfilconfirmado'] = "Fabricante"
 		            else:
-		                record['x_perfilconfirmado'] = "Distribuidor"
+		                record['x_perfilconfirmado'] = "Pendiente"
+		#Usuario Final
+		    elif (self.x_cmt_cualessuactividadprincipal == 10):
+		        if(self.x_cmt_productosquproduceoalm.x_name == "Ninguno"):
+		            record['x_perfilconfirmado'] = "Ninguno"
+		        else:
+		            record['x_perfilconfirmado'] = "Usuario Final"
 		    else:
 		        record['x_perfilconfirmado'] = "Ninguno"

@@ -3,7 +3,7 @@ from odoo import api, fields, models
 
 class Region(models.Model):
 	_inherit = 'res.partner'
-	x_region = fields.Char(string="Regiones123", compute='_cambio_region')
+	x_region = fields.Char(string="Region", compute='_cambio_region')
 
 
 	@api.one
