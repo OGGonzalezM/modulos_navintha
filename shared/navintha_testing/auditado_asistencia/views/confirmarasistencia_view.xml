@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="confirmar_asistencia_field_view" model="ir.ui.view">
+			<field name="name">confirmar_asistencia.inherit</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="mgmtsystem_audit.view_mgmtsystem_audit_form"></field>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='system_id']" posititon="after">
+					<field name="confirmar_asistencia"></field>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<!-- Main item de recursos financieros -->
+		<menuitem id="main_rf_item" name="Recursos financieros" parent="main_navintha_menu"></menuitem>
+		<!-- Item de planeación de presupuesto -->
+		<record model="ir.actions.act_window" id="planeacionpresupuesto_rfinancieros_action">
+			<field name="name">Planeación de presupuesto</field>
+			<field name="res_model">crossovered.budget</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Agregar un nuevo presupuesto
+                </p>
+            </field>
+		</record>
+		<menuitem id="planeacionpresupuesto_rf_item" name="Planeación de presupuesto" parent="main_rf_item" action="planeacionpresupuesto_rfinancieros_action"></menuitem>
+
+<!-- **************************************************************************************************************** -->
+		<record model="ir.actions.act_window" id="compras_rfinancieros_action">
+			<field name="name">Compras</field>
+			<field name="res_model">purchase.order</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Agregar una nueva orden de compra
+                </p>
+            </field>
+		</record>
+		<menuitem id="compras_rfinancieros_item" name="Compras" parent="main_rf_item" action="compras_rfinancieros_action"></menuitem>
+	</data>
+</openerp>
